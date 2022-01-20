@@ -1,0 +1,139 @@
+      <pre>
+      {{ $data | json }}
+      </pre>
+
+
+
+
+
+
+  components: {
+    HelloWorld,      ------------------------->>>> components name in app.vue
+    Persons,
+  }
+
+props: {
+    msg: String,     -------------------------->>>>> create Props and use it in another Component
+    msg2: String,
+  }
+
+
+
+
+
+
+
+
+
+
+data
+
+example
+
+  data() {
+    return {
+      name: 'John',
+      job: 'Developer',
+      message: 'Вы загрузили эту страницу: ' + new Date().toLocaleString(),
+      link: 'https://ru.vuejs.org/v2/guide/index.html#%D0%A7%D1%82%D0%BE-%D1%82%D0%B0%D0%BA%D0%BE%D0%B5-Vue-js',
+      markup: '<a href="https://ok.ru"> Social</a>',
+      seen: true,
+    }
+  },
+
+
+
+
+methods
+example
+methods: {
+    is_true() {
+       let a = 25 < 5
+      if (a){
+        this.seen = true
+      }
+      else {
+        this.seen = false
+      }
+    }
+  },
+
+
+
+
+computed
+example
+computed: {
+    hello(){
+      return 'hello my name is ' + this.name;
+    },
+  }
+
+
+
+
+
+
+
+
+
+
+
+v-model ----------------
+v-bind or only : , example v-bind:href or :href --------
+v-if    ----------------
+v-else
+v-show
+v-for   ----------------
+v-bind:class   or   :class -----------
+v-on:and write event example v-on:click or without v-on just @click    ---------------
+
+
+
+
+
+
+
+
+EVENTS
+@click
+
+KEYBOARDS EVENNT
+@keyup. (keys)
+
+
+
+
+TWO-WAY-DATA-BANDING
+
+
+
+
+
+
+Events Modifiers
+
+1).stop   stopPropogation Analog   ------
+2).prevent  PreventDefault Analog    example <form @submit.prevent></form>  ------
+3).capture
+4).self
+5).once
+6).passive   example <div @scroll.passive="onScroll"></div>
+
+
+
+
+Computed Properties
+
+<p>Age + A = {{ addToA }}</p>
+
+addToA() {
+      console.log('AddToA');
+      return this.a + this.age;
+    },
+
+
+
+
+Conditional
+
