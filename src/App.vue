@@ -1,24 +1,52 @@
 <template>
   <div id="app">
 <!--    <img alt="Vue logo" src="./assets/logo.png">-->
+<!--    <HelloWorld msg="Create Your Own Project" msg2="Rubik"/>-->
+<!--    <Aut />-->
+<!--    <Reg />-->
+    <button class="reg" type="button" @click="component='Reg'">Registration</button>
+    <button class="log" type="button" @click="component='Aut'">Login</button>
+    <keep-alive>
+      <component :is="component"></component>
+    </keep-alive>
+
     <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <HelloWorld msg2="Create Your Own Project" />
     <Persons />
+    <Slot />
   </div>
 </template>
+
+
 
 <script>
 import HelloWorld from './components/HelloWorld.vue';
 import Persons from '@/components/Persons';
+import Aut from "@/components/Aut";
+import Reg from "@/components/Reg";
+import Slot from "@/components/Slot";
+
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
     Persons,
+    Aut,
+    Reg,
+    Slot
+  },
+  data() {
+    return {
+      component: 'Aut'
+    }
   }
 }
 </script>
+
+
+
+
+
 
 <style>
 *{
@@ -34,5 +62,13 @@ export default {
   /*margin-top: 60px;*/
   margin: 0 ;
   padding: 0 ;
+}
+
+.log{
+  width: 300px;
+}
+
+.reg{
+  width: 300px;
 }
 </style>

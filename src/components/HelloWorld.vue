@@ -5,38 +5,38 @@
 
       </div>
     </section>
-    <div class="navigation_tab">
-      <nav>
-        <ul>
-          <li><a href="#0">Home</a></li>
-          <li><a href="#0">About</a></li>
-          <li>
-            <a href="#0">Clients</a>
-            <ul>
-              <li><a href="#0">Burger King</a></li>
-              <li><a href="#0">Southwest Airlines</a></li>
-              <li><a href="#0">Levi Strauss</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#0">Services</a>
-            <ul>
-              <li><a href="#0">Print Design</a></li>
-              <li><a href="#0">Web Design</a></li>
-              <li><a href="#0">Mobile App Development</a></li>
-            </ul>
-          </li>
-          <li><a href="#0">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
+<!--    <div class="navigation_tab">-->
+<!--      <nav>-->
+<!--        <ul>-->
+<!--          <li><a href="#0">Home</a></li>-->
+<!--          <li><a href="#0">About</a></li>-->
+<!--          <li>-->
+<!--            <a href="#0">Clients</a>-->
+<!--            <ul>-->
+<!--              <li><a href="#0">Burger King</a></li>-->
+<!--              <li><a href="#0">Southwest Airlines</a></li>-->
+<!--              <li><a href="#0">Levi Strauss</a></li>-->
+<!--            </ul>-->
+<!--          </li>-->
+<!--          <li>-->
+<!--            <a href="#0">Services</a>-->
+<!--            <ul>-->
+<!--              <li><a href="#0">Print Design</a></li>-->
+<!--              <li><a href="#0">Web Design</a></li>-->
+<!--              <li><a href="#0">Mobile App Development</a></li>-->
+<!--            </ul>-->
+<!--          </li>-->
+<!--          <li><a href="#0">Contact</a></li>-->
+<!--        </ul>-->
+<!--      </nav>-->
+<!--    </div>-->
     <h1 class="main_title">{{ msg }}</h1>
-    <h2>{{ msg2 }}</h2>
-<!--    <ul>-->
-<!--      <li v-for="person in people" v-bind:class="{'strike':!person.stillAlive}">-->
-<!--        {{ person.names }}-->
-<!--      </li>-->
-<!--    </ul>-->
+    <h1> {{msg2}}</h1>
+    <ol>
+      <li v-for="(person, index) in people" :key="index" v-bind:class="{'strike':!person.stillAlive}">
+        {{ person.names }}
+      </li>
+    </ol>
 
   </div>
 </template>
@@ -48,31 +48,37 @@
 export default {
   name: 'HelloWorld',
   props: {
-    msg: String,
-    msg2: String,
+    msg: {
+      type: String,
+      default: 'Mushex'
+    },
+    msg2: {
+      type: String,
+      default: 'Ashot'
+    }
   },
-  // data() {
-  //   return {
-  //     people: [
-  //       {
-  //         names: 'Franky Four Fingers',
-  //         stillAlive: false
-  //       },
-  //       {
-  //         names: 'Bullet Johny',
-  //         stillAlive: false
-  //       },
-  //       {
-  //         names: 'Boris the Blade',
-  //         stillAlive: true
-  //       },
-  //       {
-  //         names: 'Mickey',
-  //         stillAlive: true
-  //       }
-  //     ],
-  //   }
-  // }
+  data() {
+    return {
+      people: [
+        {
+          names: 'Franky Four Fingers',
+          stillAlive: false
+        },
+        {
+          names: 'Bullet Johny',
+          stillAlive: false
+        },
+        {
+          names: 'Boris the Blade',
+          stillAlive: true
+        },
+        {
+          names: 'Mickey',
+          stillAlive: true
+        }
+      ],
+    }
+  }
 }
 </script>
 
@@ -104,7 +110,7 @@ h3 {
 }
 
 .strike{
-
+  text-decoration: line-through;
 }
 
 body {
@@ -122,6 +128,10 @@ nav {
   border-radius: 30px;
   animation: slide-in 1s ease-out;
   width: 98%;
+}
+
+.strike{
+  color: red;
 }
 
 ul {

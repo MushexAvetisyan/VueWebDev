@@ -1,62 +1,95 @@
 <template>
   <div id="Persons">
 
-    <div class="main_content">
-      <input type="text" v-model="name" class="text_name">
-      <h3> My Name Is {{ name }}</h3>
-      <input type="text" v-model="job" class="text_name">
-      <h3 @click = "hello"> Work At {{ job }}</h3>
+    <div class="Persons_second_page">
+        <div class="main_content">
+          <h3> My Name Is {{ name }}</h3>
+          <input type="text" v-model="name" class="text_name">     ---------> v-model
+          <h3 @click = "hello"> Work At {{ job }}</h3>
+          <input type="text" v-model="job" class="text_name">      ---------> v-model
+        </div>
+
+        <h3>{{ hello }}---->computed method</h3>
+
+        <input type="text" :value="name">
+
+        <p v-bind:title="message" class="cursor">
+          Наведи на меня курсор
+        </p>
+
+        <a v-bind:href="link">Learn Vue</a>
+        <!--We Can use Without v-bind just write :href-->
+        <p v-if="seen">Now You See Me</p>
+
+        <div @click="is_true">
+          <h2>Click Event after click now you see me deleting</h2>
+        </div>
+
+        <h3>
+          {{counter}}
+          <button  v-on:click="counter++">+1</button>
+          <button  v-on:click="substract">-1</button>
+          <button  @dblclick="counter=0">Reset Counter</button>
+        </h3>
+
+
+
+        <h2>{{name_test}}</h2>
+        <label>Name:</label>
+        <input type="text" @keyup.113="changeName" v-model="name_test">
+        <br>
+        <label>Checkbox value: {{checked}}</label>
+        <input type="checkbox" v-model="checked" class="checking">
+
+        <br>
+        <button @click="a++">Add to A</button>
+        <button @click="b++">Add to B</button>
+        <p>A - {{ a }}</p>
+        <p>B - {{ b }}</p>
+        <p>Age + A = {{ addToA }}</p>
+        <p>Age + B = {{ addToB }}</p>
+
+
+        <button @click="error = !error">Toggle Error</button>
+        <button @click="success = !success">Toggle Success</button>
+        <p v-if="error" class="error_message">Here You Can See Error Message</p>
+        <p v-else class="error_message">Default Message</p>
+        <p v-show="success" class="error_message">Here You Can See Success Message</p>
+
+
+      <input type="text" ref="input">
+      <button @click="changeTitle">Submit</button>
+      <p ref="paragraph"></p>
+        <!--    <pre>-->
+        <!--    {{ $data | json }}-->
+        <!--    </pre>-->
     </div>
 
-    <h3>{{ hello }}</h3>
-
-    <input type="text" :value="name">
-
-    <p v-bind:title="message" class="cursor">
-      Наведи на меня курсор
-    </p>
-
-    <a v-bind:href="link">Learn Vue</a>
-    <!--We Can use Without v-bind just write :href-->
-    <p v-if="seen">Now You See Me</p>
-
-    <div @click="is_true">
-      <h2>Click Event after click now you see me deleting</h2>
+    <div class="Todo_app">
+      <h2 style="margin: 15px 0 15px 0">Todo App</h2>
+      <input type="text" @keyup.enter="addTask" v-model="currentTask" class="todo_input">
+      <ul>
+        <li
+            v-for="(task, index) in tasks" :key="index"
+            :class="{'strike' : task.isCompleted}"
+        >
+          <input
+              type="text"
+              v-if="task.isEditing"
+              @keyup.enter="editTask(task.text)"
+              v-model="editValue"
+          >
+          <span
+              v-else
+              @click="task.isCompleted = !task.isCompleted"
+          >{{ task.text }}</span>
+          <button @click="removeTask(task.text)">Remove Task</button>
+          <button @click="changeEditing(task.text)">Edit Todo</button>
+        </li>
+      </ul>
     </div>
 
-    <h3>
-      {{counter}}
-      <button  v-on:click="counter++">+1</button>
-      <button  v-on:click="substract">-1</button>
-      <button  @dblclick="counter=0">Reset Counter</button>
-    </h3>
 
-
-
-    <h2>{{name_test}}</h2>
-    <label>Name:</label>
-    <input type="text" @keyup.113="changeName" v-model="name_test">
-    <br>
-    <label>Checkbox value: {{checked}}</label>
-    <input type="checkbox" v-model="checked" class="checking">
-
-    <br>
-    <button @click="a++">Add to A</button>
-    <button @click="b++">Add to B</button>
-    <p>A - {{ a }}</p>
-    <p>B - {{ b }}</p>
-    <p>Age + A = {{ addToA }}</p>
-    <p>Age + B = {{ addToB }}</p>
-
-
-    <button @click="error = !error">Toggle Error</button>
-    <button @click="success = !success">Toggle Success</button>
-    <p v-if="error" class="error_message">Here You Can See Error Message</p>
-    <p v-else class="error_message">Default Message</p>
-    <p v-show="success" class="error_message">Here You Can See Success Message</p>
-<!--    <pre>-->
-<!--    {{ $data | json }}-->
-<!--    </pre>-->
 
   </div>
 </template>
@@ -81,7 +114,29 @@ export default {
       b: 0,
       age: 20,
       error: false,
-      success: false
+      success: false,
+
+      currentTask: '',
+      editValue: '',
+      tasks: [
+        {
+          text: 'Subscribe To Channel',
+          isCompleted: false,
+          isEditing: false
+        },
+
+        {
+          text: 'Like the Video',
+          isCompleted: false,
+          isEditing: false
+        },
+
+        {
+          text: 'Learn Vue.js',
+          isCompleted: true,
+          isEditing: false
+        }
+      ]
     }
   },
 
@@ -115,6 +170,41 @@ export default {
       console.log('Name is Changed!');
     },
 
+    addTask() {
+      this.tasks.push({
+        text: this.currentTask,
+        isCompleted: false
+      });
+      this.currentTask = '';
+    },
+
+    removeTask(taskText) {
+      this.tasks = this.tasks.filter(task => {
+        return  task.text !== taskText;
+      })
+    },
+    changeEditing(taskText) {
+      this.editValue = taskText;        /*send our task in input*/
+      this.tasks = this.tasks.map(task => {
+        if(task.text === taskText) {
+          task.isEditing = !task.isEditing;
+        }
+        return task;
+      })
+    },
+    editTask(taskText) {
+      this.tasks = this.tasks.map(task => {
+        if(task.text === taskText) {
+          task.isEditing = !task.isEditing;
+          task.text = this.editValue;
+        }
+        return task;
+      })
+    },
+    changeTitle() {
+      this.title = this.$refs.input.value;
+      console.log(this.$refs)
+    }
   },
 
 
@@ -152,6 +242,30 @@ export default {
   color: white;
   padding: 20px;
   border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.Persons_second_page{
+  width: 100%;
+}
+
+.Todo_app{
+  width: 100%;
+  background-color: #2c3e50;
+}
+
+.Todo_app ul li{
+  list-style-type: none;
+  cursor: pointer;
+}
+
+.strike{
+  text-decoration: line-through;
+}
+
+.todo_input{
+  margin-bottom: 20px;
 }
 
 .error_message{
@@ -225,11 +339,6 @@ h3{
   border: none;
 }
 
-.main_content{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
 .main_content h3{
   margin: 0 20px;

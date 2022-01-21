@@ -74,17 +74,18 @@ computed: {
 
 
 
+v-model ---------------->  Օգտագործվում է մուտքային տարրի արժեքը փոփոխականի հետ կապելու համար: Եթե փոխեք մեկը կամ մյուսը, Vue-ն ավտոմատ կերպով կթարմացնի մյուսը:
+Արդյունքում փոփոխականը և մուտքային տարրը միշտ կունենան նույն արժեքը։
 
 
 
+v-bind or only : , example v-bind:href or :href -----------> Թույլ է տալիս որևէ հատկանիշի արտահայտություն վերագրել: Vue արտահայտությունը կփոխարինի իր արժեքով
 
 
-v-model ----------------
-v-bind or only : , example v-bind:href or :href --------
 v-if    ----------------
 v-else
 v-show
-v-for   ----------------
+v-for   ----------------  rendering lists or tabs
 v-bind:class   or   :class -----------
 v-on:and write event example v-on:click or without v-on just @click    ---------------
 
