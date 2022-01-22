@@ -12,9 +12,14 @@
 
     <HelloWorld msg="Welcome to Your Vue.js App"/>
     <Persons />
-    <Slot />
+    <Slot>
+      <h2 slot="title">Test Title for slot component</h2>
+      <p slot="text">Test Text for slot Component</p>
+    </Slot>
   </div>
 </template>
+
+
 
 
 

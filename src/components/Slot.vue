@@ -1,7 +1,9 @@
 <template>
-<h1>
-  Hello
-</h1>
+<div class="">
+  <slot name="title"></slot>
+  <h1>slot title</h1>
+  <slot name="text"></slot>
+</div>
 </template>
 
 
