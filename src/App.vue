@@ -4,20 +4,21 @@
 <!--    <HelloWorld msg="Create Your Own Project" msg2="Rubik"/>-->
 <!--    <Aut />-->
 <!--    <Reg />-->
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
     <button class="reg" type="button" @click="component='Reg'">Registration</button>
     <button class="log" type="button" @click="component='Aut'">Login</button>
     <keep-alive>
       <component :is="component"></component>
     </keep-alive>
-
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
     <Persons />
-    <Slot>
+    <Plot>
       <h2 slot="title">Test Title for slot component</h2>
       <p slot="text">Test Text for slot Component</p>
-    </Slot>
+    </Plot>
     <h2>Outer title</h2>
-    <List />
+    <List v-bind:people="people" @message="displayMessage"/>
+    <Header />
+    <AddBlock />
   </div>
 </template>
 
@@ -30,8 +31,10 @@ import HelloWorld from './components/HelloWorld.vue';
 import Persons from '@/components/Persons';
 import Aut from "@/components/Aut";
 import Reg from "@/components/Reg";
-import Slot from "@/components/Slot";
+import Plot from "@/components/Plot";
 import List from "@/components/List";
+import Header from "@/components/Header";
+import AddBlock from "@/components/AddBlock";
 
 
 export default {
@@ -41,12 +44,20 @@ export default {
     Persons,
     Aut,
     Reg,
-    Slot,
-    List
+    Plot,
+    List,
+    Header,
+    AddBlock
   },
   data() {
     return {
-      component: 'Aut'
+      component: 'Aut',
+      people: ['Max', 'Jack', 'Leo']
+    }
+  },
+  methods: {
+    displayMessage(message){
+      this.people.push(message)
     }
   }
 }
@@ -58,10 +69,10 @@ export default {
 
 
 <style scoped>
-*{
-  margin: 0 ;
-  padding: 0 ;
-}
+/**{*/
+/*  margin: 0 ;*/
+/*  padding: 0 ;*/
+/*}*/
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

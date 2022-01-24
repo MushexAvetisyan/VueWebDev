@@ -31,7 +31,6 @@
 <!--      </nav>-->
 <!--    </div>-->
     <h1 class="main_title">{{ msg }}</h1>
-    <h1> {{msg2}}</h1>
     <ol>
       <li v-for="(person, index) in people" :key="index" v-bind:class="{'strike':!person.stillAlive}">
         {{ person.names }}
@@ -52,10 +51,6 @@ export default {
       type: String,
       default: 'Mushex'
     },
-    msg2: {
-      type: String,
-      default: 'Ashot'
-    }
   },
   data() {
     return {
@@ -142,6 +137,9 @@ ul {
   padding: 0 30px;
   list-style-type: none;
   justify-content: center;
+}
+ol{
+  list-style-type: none;
 }
 ul li:not(:last-child) {
   margin-right: 40px;

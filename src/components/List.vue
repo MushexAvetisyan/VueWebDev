@@ -1,11 +1,15 @@
 <template>
 
   <div class="inner">
-    <h2>Inner Title</h2>
+    <input type="text" v-model="message" @keyup.enter="saveMessage">
+    <h2 @click="show">Inner Title</h2>
     <ul>
       <li v-for="(pers, index) in people" :key="index">
         {{pers}}
       </li>
+    </ul>
+    <ul>
+      <li v-for="pers in people" :key="pers">{{pers}}</li>
     </ul>
   </div>
 
@@ -15,13 +19,29 @@
 
 
 <script>
-export default {
-  comments: {
+import { bus } from "@/main";
 
+export default {
+  props: {
+    people: {
+      type: Array,
+      default: () => [],
+    }
   },
+
   data() {
     return {
-      people: ['Max', 'Jack', 'Leo']
+      message: ''
+    }
+  },
+
+  methods: {
+    show() {
+      console.log(this.people);
+    },
+    saveMessage() {
+      bus.$emit('message', this.message)
+      this.message = '';
     }
   }
 }

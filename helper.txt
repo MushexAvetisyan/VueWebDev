@@ -1,14 +1,27 @@
+      PRINT DATA AND DEBUG
+
       <pre>
       {{ $data | json }}
       </pre>
 
 
 
-<ul>
-    <li v-for="(pers, index) in people" :key="index">
-      {{pers}}
-    </li>
-</ul>
+
+VALUE AND KEYS FOR pers in index
+
+        <ul>
+            <li v-for="(pers, index) in people" :key="index">
+              {{pers}}
+            </li>
+        </ul>
+
+
+
+        <ul>
+              <li v-for="pers in people" :key="pers">{{pers}}</li>
+        </ul>
+
+
 
 
 
@@ -18,11 +31,56 @@
     Persons,
   }
 
-props: {
-    msg: String,     -------------------------->>>>> create Props and use it in another Component
-    msg2: String,
+
+
+
+    props: {
+        msg: String,     -------------------------->>>>> create Props and use it in another Component
+        msg2: String,
+      }
+
+
+
+
+
+
+
+$Emit
+Example
+
+  data() {
+    return {
+      message: ''
+    }
+  },
+
+  methods: {
+    show() {
+      console.log(this.people);
+    },
+    saveMessage() {
+      this.$emit('message', this.message)
+    }
   }
 
+
+
+
+
+
+
+
+    obj_param:{
+            type:Object,
+            default:()=>{}
+    },
+
+
+
+    array_param:{
+            type:Array,
+            default:()=>[]
+    },
 
 
 
@@ -33,7 +91,6 @@ props: {
 
 
 data
-
 example
 
   data() {
@@ -81,18 +138,22 @@ computed: {
 
 
 v-model ---------------->  Օգտագործվում է մուտքային տարրի արժեքը փոփոխականի հետ կապելու համար: Եթե փոխեք մեկը կամ մյուսը, Vue-ն ավտոմատ կերպով կթարմացնի մյուսը:
-Արդյունքում փոփոխականը և մուտքային տարրը միշտ կունենան նույն արժեքը։
-
+                            Արդյունքում փոփոխականը և մուտքային տարրը միշտ կունենան նույն արժեքը։
 
 
 v-bind or only : , example v-bind:href or :href -----------> Թույլ է տալիս որևէ հատկանիշի արտահայտություն վերագրել: Vue արտահայտությունը կփոխարինի իր արժեքով
 
 
 v-if    ----------------
+
 v-else
+
 v-show
+
 v-for   ----------------  rendering lists or tabs
+
 v-bind:class   or   :class -----------
+
 v-on:and write event example v-on:click or without v-on just @click    ---------------
 
 
@@ -105,8 +166,16 @@ v-on:and write event example v-on:click or without v-on just @click    ---------
 EVENTS
 @click
 
+
+
+
+
+
 KEYBOARDS EVENNT
 @keyup. (keys)
+
+
+
 
 
 
@@ -130,6 +199,9 @@ Events Modifiers
 
 
 
+
+
+
 Computed Properties
 
 <p>Age + A = {{ addToA }}</p>
@@ -138,6 +210,9 @@ addToA() {
       console.log('AddToA');
       return this.a + this.age;
     },
+
+
+
 
 
 

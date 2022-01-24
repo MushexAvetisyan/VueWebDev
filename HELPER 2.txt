@@ -1,0 +1,65 @@
+DEFAULT PAGE BIULDER
+
+<template>
+  <div class="">
+      <header>
+        <h1>Header Title</h1>
+      </header>
+  </div>
+</template>
+
+
+
+
+
+<script>
+export default {
+data() {
+  return{
+
+  }
+}
+}
+</script>
+
+
+
+
+<style scoped>
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<keep-alive>
+      <component :is="component"></component>
+</keep-alive>
+
+
+
+  created() {
+    bus.$on('message', data => {
+      this.title = data;
+    })
+  }
+
+
+
+
+
+
