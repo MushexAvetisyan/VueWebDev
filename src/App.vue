@@ -16,6 +16,8 @@
       <h2 slot="title">Test Title for slot component</h2>
       <p slot="text">Test Text for slot Component</p>
     </Slot>
+    <h2>Outer title</h2>
+    <List />
   </div>
 </template>
 
@@ -29,6 +31,7 @@ import Persons from '@/components/Persons';
 import Aut from "@/components/Aut";
 import Reg from "@/components/Reg";
 import Slot from "@/components/Slot";
+import List from "@/components/List";
 
 
 export default {
@@ -38,7 +41,8 @@ export default {
     Persons,
     Aut,
     Reg,
-    Slot
+    Slot,
+    List
   },
   data() {
     return {
@@ -53,7 +57,7 @@ export default {
 
 
 
-<style>
+<style scoped>
 *{
   margin: 0 ;
   padding: 0 ;
@@ -75,5 +79,8 @@ export default {
 
 .reg{
   width: 300px;
+}
+h2{
+  color: red;
 }
 </style>

@@ -4,6 +4,12 @@
 
 
 
+<ul>
+    <li v-for="(pers, index) in people" :key="index">
+      {{pers}}
+    </li>
+</ul>
+
 
 
 
